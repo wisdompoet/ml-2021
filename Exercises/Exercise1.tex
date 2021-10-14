@@ -1,0 +1,61 @@
+
+\documentclass{article}
+
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+
+%\usetheme{Berlin}
+%\usecolortheme{seahorse}
+%\usefonttheme{professionalfonts}
+
+\begin{document}
+
+  \section*{Programming Exercise 1}
+
+  {\bf Due on 26 October}\\
+
+
+In this task we will focus on the training set only.
+Consider the following repository of datasets:\\
+
+\noindent
+\url{http://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/}\\
+
+\noindent
+
+\section{Regression Task}
+
+Choose a regression dataset and apply linear regression on a random subset of the training set of increasing size. You should select training sets that include more and more data points.
+\begin{enumerate}
+\item Plot the approximation error (square loss) on the training set as a function of the number of samples $N$ (i.e.~data points in the training set). % change to m !!!
+\item Plot the cpu-time as a function of $N$.
+\item Explain in detail the behaviour of both curves.
+\item Explore how the learned weights change as a function of $N$.
+Can you find an interpretation for the learned weights?
+\end{enumerate}
+
+\section{Classification Task}
+
+Choose a classification dataset and apply logistic regression.
+Repeat the previous steps using as error the mean accuracy.
+
+
+\section{Hints}
+\begin{itemize}
+\item Feel free to use your favourite software. We recommend Python.
+\item You can obtain smoother curves by averaging over several permutations of the dataset.
+Ideally you could also plot the variance, not only the mean.
+\item In this exercise we are only evaluating in-sample error, \textbf{do not use regularization!}
+\item Check your results are in agreement with the theory.
+\item Useful links:
+\\
+\noindent
+\url{https://scikit-learn.org/stable/user_guide.html}\\
+\url{https://colab.research.google.com/}\\
+\end{itemize}
+
+
+\end{document}

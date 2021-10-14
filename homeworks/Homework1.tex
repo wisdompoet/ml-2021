@@ -1,0 +1,44 @@
+
+\documentclass{article}
+
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{textpos}
+\usepackage{amsmath}
+
+%\usetheme{Berlin}
+%\usecolortheme{seahorse}
+%\usefonttheme{professionalfonts}
+
+\begin{document}
+
+  \section*{Homework 1}
+
+  {\bf Due on 19 October}\\
+
+  In linear regression, the hat matrix $H=X(X^\top X)^{-1}X^\top$ puts the ``hat'' on the label vector $y$ since the prediction $\hat{y}$ equals
+  \[
+	\hat{y} = Xw_{\mathrm{lin}} = X(X^\top X)^{-1}X^\top y = H y,
+  \]
+  where $w_{\mathrm{lin}}$ is the weight vector that minimizes empirical risk.
+
+  Show that for any $m\times(d+1)$ matrix $X$ such that $X^\top X$ is invertible, the hat matrix satisfies the following three properties:
+  \begin{enumerate}
+  \item $H$ is symmetric, i.e.~$H^\top = H$
+  \item $H^2 = HH = H$
+  \item $(I-H)^2 = (I-H)(I-H) = (I-H)$
+  \end{enumerate}
+
+  \vspace*{.5cm}
+
+  Hints:
+  \begin{itemize}
+  \item Matrix multiplication is {\em not} commutative, i.e.~$AB\neq BA$ in general.
+  \item Given a matrix product $AB$, the transpose satisfies $(AB)^\top = B^\top A^\top$.
+  \item Given an invertible matrix $A$, the transpose satisfies $\left(A^{-1}\right)^\top = \left(A^\top\right)^{-1}$.
+  \item Given an invertible matrix product $AB$, in general it does {\em not} hold that $(AB)^{-1} = B^{-1} A^{-1}$, since $A$ and $B$ may {\em not} be invertible in isolation.
+  \end{itemize}
+
+\end{document}
