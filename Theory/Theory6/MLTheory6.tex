@@ -307,6 +307,7 @@ Unsupervised learning
 	\[G_{k-\text{means}}(C_1,\ldots,C_k) = \sum_{i=1}^k\sum_{x\in C_i} d(x,\mu(C_i))^2,\]
 	where $\mu(C_i)$ is the {\color{blue} centroid} of subset $C_i$:
 	\[\mu(C_i) = \arg\min_{\mu'\in\mathcal{X}} \sum_{x\in C_i} d(x,\mu')^2\]
+	\pause
 	\item An optimal clustering is the solution to the minimization problem
 	\[\arg\min_{C_1,\ldots,C_k} G_{k-\text{means}}(C_1,\ldots,C_k)\]
 	\item {\color{red} Problem}: NP-hard to minimize
@@ -511,6 +512,44 @@ Unsupervised learning
 \end{frame}
 
 \begin{frame}
+  \frametitle{Example}
+  \begin{pspicture}(8,2)
+	\psaxes[dx=.6,dy=.6](3,0)(6.01,2.01)
+	\psdots[dotstyle=+,dotscale=2 2,linecolor=red](4.2,1.2)
+	\psdots[dotstyle=+,dotscale=2 2,linecolor=green](5.4,1.2)
+	\pscircle[fillstyle=solid,fillcolor=red,linecolor=red](3.6,1.2){.07}
+	\pscircle[fillstyle=solid,fillcolor=red,linecolor=red](4.2,1.2){.07}
+	\pscircle[fillstyle=solid,fillcolor=red,linecolor=red](4.8,1.2){.07}
+	\pscircle[fillstyle=solid,fillcolor=green,linecolor=green](5.4,1.2){.07}
+  \end{pspicture}
+	\linebreak
+	\linebreak
+	\linebreak
+	\linebreak
+	\vspace*{0cm}
+	Total cost is $1^2 + 0^2 + 1^2 + 0^2 = 2$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example}
+  \begin{pspicture}(8,2)
+	\psaxes[dx=.6,dy=.6](3,0)(6.01,2.01)
+	\psdots[dotstyle=+,dotscale=2 2,linecolor=red](3.9,1.2)
+	\psdots[dotstyle=+,dotscale=2 2,linecolor=green](5.1,1.2)
+	\pscircle[fillstyle=solid,fillcolor=red,linecolor=red](3.6,1.2){.07}
+	\pscircle[fillstyle=solid,fillcolor=red,linecolor=red](4.2,1.2){.07}
+	\pscircle[fillstyle=solid,fillcolor=green,linecolor=green](4.8,1.2){.07}
+	\pscircle[fillstyle=solid,fillcolor=green,linecolor=green](5.4,1.2){.07}
+  \end{pspicture}
+	\linebreak
+	\linebreak
+	\linebreak
+	\linebreak
+	\vspace*{0cm}
+	Total cost is $(0.5)^2 + (0.5)^2 + (0.5)^2 + (0.5)^2 = 1$
+\end{frame}
+
+\begin{frame}
   \frametitle{Variants}
   \begin{itemize}
     \item Random restarts (different choice of initial centroids)
@@ -543,14 +582,52 @@ Unsupervised learning
 
 \begin{frame}
   \frametitle{Algorithm}
-  \begin{itemize}
-    \item Start with $k$ random Gaussian distributions (the clusters)
+  \begin{block}{Mixture of Gaussians}
+  \begin{enumerate}
+	\item Input: training set $S=(x_1,\ldots,x_m)$
+	\item Randomly form mixture of $k$ Gaussians $c,(\mu_1,\Sigma_1),\ldots,(\mu_k,\Sigma_k)$
+	\item $c_i$: prior probability of belonging to cluster $(\mu_i,\Sigma_i)$
 	\item Expectation-maximization algorithm:
   \begin{itemize}
-    \item Expectation: compute the likelihood of each data point belonging to each cluster
-	\item Maximization: optimize the parameters of the Gaussians to better fit the data
+    \item Expectation: compute likelihood of $x$ belonging to cluster $(\mu_i,\Sigma_i)$
+	\item Maximization: update $c$ and each $(\mu_i,\Sigma_i)$ to better fit the data
   \end{itemize}
-	\item Run until convergence
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Expectation step}
+  \begin{itemize}
+    \item For $\Sigma_1=\cdots=\Sigma_k=I$, the expectation step for $x\in S$ is given by
+	\[P(i|x) = \frac 1 Z P(i)P(x|i) = \frac 1 Z c_i \exp \left( - \frac 1 2 \lVert x - \mu_i \rVert^2 \right)\]
+	$Z$: normalization factor which ensures that $\sum_i P(i|x) = 1$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Maximization step}
+  \begin{itemize}
+    \item For $\Sigma_1=\cdots=\Sigma_k=I$, the maximization step is given by
+	\begin{align*}
+	 & \arg \max_{c,\mu_1,\ldots,\mu_k} \sum_{j=1}^m \sum_{i=1}^k P(i|x_j) \log \left( c_i \exp \left( - \frac 1 2 \lVert x_j - \mu_i \rVert^2 \right) \right)\\
+	 &= \arg \max_{c,\mu_1,\ldots,\mu_k} \sum_{j=1}^m \sum_{i=1}^k P(i|x_j) \left( \log(c_i) - \frac 1 2 \lVert x_j - \mu_i \rVert^2 \right)
+	\end{align*}
+	\pause
+	\item {\color{red} Analytical solution}:
+	\begin{align*}
+	\mu_i &= \frac {\sum_{j=1}^m P(i|x_j) x_j} {\sum_{j=1}^m P(i|x_j)},\\
+	c_i &= \frac {\sum_{j=1}^m P(i|x_j)} {\sum_{i'=1}^k \sum_{j=1}^m P(i'|x_j)}.\\
+	\end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Comparison to $k$-means}
+  \begin{itemize}
+    \item {\color{red} Soft assignment}: probability $P(i|x)$ of belonging to cluster $i$
+	\item Mean ($\approx$ centroid): weighted average of {\color{red} all} data points
+	\item Mixture of Gaussians is often called {\color{red} soft $k$-means}
   \end{itemize}
 \end{frame}
 
@@ -731,6 +808,38 @@ Unsupervised learning
 
 \begin{frame}
   \frametitle{$k$-means}
+  \begin{itemize}
+    \item Given clusters $C_1,\ldots,C_k$, each centroid $\mu_i$ is computed as
+	\[\mu_i = \mu(C_i) = \arg\min_{\mu'\in\mathcal{X}} \sum_{x\in C_i} d(x,\mu')^2\]
+	\pause
+	\item Show that when $d(x,y)=\lVert x - y \rVert$, the solution is given by
+	\[\mu_i = \mu(C_i) = \frac 1 {|C_i|} \sum_{x\in C_i} x\]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$k$-means}
+  \begin{itemize}
+    \item The optimization problem is given by
+	\[\min_{\mu'\in\mathcal{X}} f(\mu') = \min_{\mu'\in\mathcal{X}} \sum_{x\in C_i} \lVert x - \mu' \rVert^2\]
+	\pause
+	\vspace{-0.5cm}
+    \item The gradient is given by
+  \[
+  \begin{cases}
+  \begin{aligned}
+  \action<+->{\nabla f(\mu') &= \sum_{x\in C_i} 2(x - \mu')(-1) = \sum_{x\in C_i} 2(\mu'-x)\\}
+  \action<+->{ &= 2(|C_i|\mu' - \sum_{x\in C_i} x)}
+  \end{aligned}
+  \end{cases}
+  \]
+	\pause
+	\item Setting the gradient to $0$ immediately yields $\mu_i^* = \frac 1 {|C_i|} \sum_{x\in C_i} x$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$k$-means}
   \begin{block}{$k$-means clustering}
   \begin{enumerate}
     \item Input: $S=(x_1,\ldots,x_m)$
@@ -791,6 +900,88 @@ Unsupervised learning
   \action<+->{ &{\color{red} \leq} \sum_{i=1}^k {\color{red} \sum_{x\in C_i'} d(x,\mu_i)^2} = \sum_{x\in S} {\color{red} d(x,\mu(C'(x)))^2}\\}
   \action<+->{ &{\color{red} \leq} \sum_{x\in S} {\color{red} d(x,\mu(C(x)))^2} = \sum_{i=1}^k\sum_{x\in C_i} d(x,\mu(C_i))^2\\}
   \action<+->{ &= G_{k-\text{means}}(C_1,\ldots,C_k)\\}
+  \end{aligned}
+  \end{cases}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mixture of Gaussians}
+  \begin{itemize}
+    \item For $\Sigma_1=\cdots=\Sigma_k=I$, the maximization step is given by
+	\[\arg \max_{c,\mu_1,\ldots,\mu_k} \sum_{j=1}^m \sum_{i=1}^k P(i|x_j) \left( \log(c_i) - \frac 1 2 \lVert x_j - \mu_i \rVert^2 \right)\]
+	\item Show that the analytical solution for $c$ is given by
+	\[c_i = \frac {\sum_{j=1}^m P(i|x_j)} {\sum_{i'=1}^k \sum_{j=1}^m P(i'|x_j)}\]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mixture of Gaussians}
+  \begin{itemize}
+    \item For $\Sigma_1=\cdots=\Sigma_k=I$, the maximization step is given by
+	\[\arg \max_{c,\mu_1,\ldots,\mu_k} \sum_{j=1}^m \sum_{i=1}^k P(i|x_j) \left( \log(c_i) - \frac 1 2 \lVert x_j - \mu_i \rVert^2 \right)\]
+	\item To maximize with respect to $c$, we can simplify to
+	\[\arg \max_c \sum_{i=1}^k z_i \log(c_i),\]
+	where $z_i = \sum_{j=1}^m P(i|x_j) > 0$, $\forall i$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mixture of Gaussians}
+  \begin{itemize}
+    \item Since $c$ is a probability distribution, we have two constraints:
+	\begin{align*}
+	c_i &\geq 0 \;\;\; \forall i,\\
+	\sum_{i=1}^k c_i &= 1.
+	\end{align*}
+	\item Hence the problem is a constrained optimization problem:
+	\begin{align*}
+	\max_c \sum_{i=1}^k z_i & \log(c_i),\\
+	\text{s.t.} \;\;\; c_i &\geq 0 \;\;\; \forall i,\\
+	\sum_{i=1}^k c_i &= 1.
+	\end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mixture of Gaussians}
+  \begin{itemize}
+    \item The Lagrangian is given by
+	\begin{align*}
+	\mathcal{L}(c,\lambda,\beta) = \sum_{i=1}^k z_i \log(c_i) + \lambda (1 - \sum_{i=1}^k c_i) + \sum_{i=1}^k \beta_i c_i
+	\end{align*}
+    \item The KKT conditions are given by
+	\begin{align*}
+	\frac {\partial\mathcal{L}} {\partial c_i} &= \frac {z_i} {c_i} - \lambda + \beta_i = 0 \;\;\; \forall i,\\
+	\frac {\partial\mathcal{L}} {\partial \lambda} &= 1 - \sum_{i=1}^k c_i = 0,\\
+	\beta_i c_i &= 0 \;\;\; \forall i.
+	\end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mixture of Gaussians}
+  \begin{itemize}
+    \item Since $z_i>0$, $c_i=0$ yields $z_i\log(0) = -\infty$
+	\item Since we are {\color{red} maximizing}, better choose $c_i>0$ $\Rightarrow$ $\beta_i=0$
+	\pause
+	\item Hence we have
+	\[0=\frac {z_i} {c_i} - \lambda + \beta_i = \frac {z_i} {c_i} - \lambda \;\; \Leftrightarrow \;\; c_i^* = \frac {z_i} \lambda \;\; \forall i\]
+	\pause
+	\item To obtain $\lambda^*$, insert the expression for $c_i^*$ into the constraint:
+	\[1 = \sum_{i=1}^k c_i^* = \sum_{i=1}^k \frac {z_i} \lambda = \frac 1 \lambda \sum_{i=1}^k z_i \;\; \Leftrightarrow \;\; \lambda^* = \sum_{i=1}^k z_i\]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mixture of Gaussians}
+  In conclusion, the optimal value of $c$ is given by
+  \[
+  \begin{cases}
+  \begin{aligned}
+  \action<+->{c_i^* &= \frac {z_i} {\lambda^*}\\}
+  \action<+->{ &= \frac {z_i} {\sum_{i'=1}^k z_{i'}}\\}
+  \action<+->{ &= \frac {\sum_{j=1}^m P(i|x_j)} {\sum_{i'=1}^k \sum_{j=1}^m P(i'|x_j)}}
   \end{aligned}
   \end{cases}
   \]
