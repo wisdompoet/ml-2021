@@ -1,0 +1,61 @@
+
+\documentclass{article}
+
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{textpos}
+\usepackage{amsmath}
+
+\newcommand\hcancel[2][black]{\setbox0=\hbox{$#2$}%
+\rlap{\raisebox{.45\ht0}{\textcolor{#1}{\rule{\wd0}{1pt}}}}#2}
+
+%\usetheme{Berlin}
+%\usecolortheme{seahorse}
+%\usefonttheme{professionalfonts}
+
+\begin{document}
+
+  \subsection*{Solution to Homework 2}
+
+  Since $f$ and $g$ are convex by assumption, for any pair of vectors $x_1,x_2\in\mathbb{R}^d$ and any $\alpha\in[0,1]$ it holds that
+  \begin{align*}
+	f(\alpha x_1 + (1-\alpha)x_2) &\leq \alpha f(x_1) + (1-\alpha) f(x_2),\\
+	g(\alpha x_1 + (1-\alpha)x_2) &\leq \alpha g(x_1) + (1-\alpha) g(x_2).
+  \end{align*}
+  \begin{enumerate}
+	\item $h(x) = a\cdot f(x)$, for any constant $a>0$:
+	\begin{align*}
+	h(\alpha x_1 + (1-\alpha)x_2) &= a\cdot f(\alpha x_1 + (1-\alpha)x_2)\\
+	 &\leq a \left( \alpha f(x_1) + (1-\alpha) f(x_2) \right)\\
+	 &= \alpha a \cdot f(x_1) + (1-\alpha) a \cdot f(x_2)\\
+	 &= \alpha h(x_1) + (1-\alpha) h(x_2).
+	\end{align*}
+	\item $h(x) = f(x) + g(x)$:
+	\begin{align*}
+	h(\alpha x_1 + (1-\alpha)x_2) &= f(\alpha x_1 + (1-\alpha)x_2) + g(\alpha x_1 + (1-\alpha)x_2)\\
+	 &\leq \alpha f(x_1) + (1-\alpha) f(x_2) + \alpha g(x_1) + (1-\alpha) g(x_2)\\
+	 &= \alpha( f(x_1) + g(x_1) ) + (1-\alpha)( f(x_2) + g(x_2) )\\
+	 &= \alpha h(x_1) + (1-\alpha) h(x_2).
+	\end{align*}
+	\item $h(x) = \max(f(x),g(x))$:
+	\begin{align*}
+	h(\alpha x_1 + (1-\alpha)x_2) &= \max(f(\alpha x_1 + (1-\alpha)x_2), g(\alpha x_1 + (1-\alpha)x_2))\\
+	 &\leq \max(\alpha f(x_1) + (1-\alpha) f(x_2), \alpha g(x_1) + (1-\alpha) g(x_2))\\
+	 & \hspace*{1cm} {\color{red} \{ \max(a + b, c + d) \leq \max(a, c) + \max(b, d) \}}\\
+	 &\leq \max(\alpha f(x_1), \alpha g(x_1)) + \max( (1-\alpha) f(x_2), (1-\alpha) g(x_2) )\\
+	 &= \alpha \max(f(x_1), g(x_1)) + (1-\alpha) \max( f(x_2), g(x_2) )\\
+	 &= \alpha h(x_1) + (1-\alpha) h(x_2).
+	\end{align*}
+	\item $h(x) = f(Ax + b)$, for any $d\times d$ matrix $A$ and $d\times 1$ vector $b$:
+	\begin{align*}
+	h(\alpha x_1 + (1-\alpha)x_2) &= f(A(\alpha x_1 + (1-\alpha)x_2) + b)\\
+	 &= f( \alpha ( Ax_1 + b ) + (1-\alpha) ( Ax_2 + b ) )\\
+	 &\leq \alpha f(Ax_1 + b) + (1-\alpha) f(Ax_2 + b)\\
+	 &= \alpha h(x_1) + (1-\alpha) h(x_2).
+	\end{align*}
+  \end{enumerate}
+
+
+\end{document}

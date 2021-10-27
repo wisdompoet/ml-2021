@@ -337,7 +337,7 @@ Linear Models
   \begin{cases}
   \begin{aligned}
   \action<+->{ L_S(w) &= \frac 1 m \sum_{i=1}^m(w^\top x_i-y_i)^2 = \frac 1 m \left \lVert \left( \begin{array}{c} w^\top x_1 - y_1\\ \vdots \\ w^\top x_m - y_m \end{array} \right) \right \rVert^2 \\}
-  \action<+->{  &= \frac 1 m \left \lVert \left( \begin{array}{ccc} \textrm{-----} & x_1 & \textrm{-----} \\ \textrm{-----} & x_2 & \textrm{-----} \\ & \vdots & \\ \textrm{-----} & x_m & \textrm{-----} \end{array} \right)
+  \action<+->{  &= \frac 1 m \left \lVert \left( \begin{array}{ccc} \textrm{-----} & x_1^\top & \textrm{-----} \\ \textrm{-----} & x_2^\top & \textrm{-----} \\ & \vdots & \\ \textrm{-----} & x_m^\top & \textrm{-----} \end{array} \right)
   \left( \begin{array}{c} w_0 \\ \vdots \\ w_d \end{array} \right) -
   \left( \begin{array}{c} y_1 \\ y_2 \\ \vdots \\ y_m \end{array} \right) \right \rVert^2 \\}
   \action<+->{  &= \frac 1 m \left \lVert X w - y \right \rVert^2 = \frac 1 m \left( w^\top X^\top X w - 2 w^\top X^\top y + y^\top y \right) }

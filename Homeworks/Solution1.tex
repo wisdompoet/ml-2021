@@ -1,0 +1,46 @@
+
+\documentclass{article}
+
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{textpos}
+\usepackage{amsmath}
+
+\newcommand\hcancel[2][black]{\setbox0=\hbox{$#2$}%
+\rlap{\raisebox{.45\ht0}{\textcolor{#1}{\rule{\wd0}{1pt}}}}#2}
+
+%\usetheme{Berlin}
+%\usecolortheme{seahorse}
+%\usefonttheme{professionalfonts}
+
+\begin{document}
+
+  \subsection*{Solution to Homework 1}
+
+  \begin{enumerate}
+	\item $H$ is symmetric, i.e.~$H^\top = H$:
+	\begin{align*}
+	H^\top &= \left( X(X^\top X)^{-1}X^\top \right)^\top & {\color{red} \left\{ (ABC)^\top = C^\top B^\top A^\top \right\}}\\
+	 &= \left(X^\top\right)^\top \left((X^\top X)^{-1}\right)^\top X^\top & {\color{red} \left\{ (A^\top)^\top = A, (A^{-1})^\top = (A^\top)^{-1} \right\}}\\
+	 &= X \left((X^\top X)^\top\right)^{-1} X^\top & {\color{red} \left\{ (AB)^\top = B^\top A^\top \right\}}\\
+	 &= X \left(X^\top \left(X^\top\right)^\top\right)^{-1} X^\top & {\color{red} \left\{ (A^\top)^\top = A \right\}}\\
+	 &= X (X^\top X)^{-1} X^\top = H.
+	\end{align*}
+	\item $H^2 = HH = H$:
+	\begin{align*}
+	H^2 &= HH\\
+	 &= X{\color{red} (X^\top X)^{-1}X^\top X}(X^\top X)^{-1}X^\top & {\color{red} \left\{ A^{-1} A = I \right\}}\\
+	 &= {\color{red} XI}(X^\top X)^{-1}X^\top & {\color{red} \left\{ AI = A \right\}}\\
+	 &= X(X^\top X)^{-1}X^\top = H.
+	\end{align*}
+	\item $(I-H)^2 = (I-H)(I-H) = (I-H)$:
+	\begin{align*}
+	(I-H)^2 &= (I-H)(I-H)\\
+	 &= II - IH - HI + HH & {\color{red} \left\{ IA = A, AI = A, HH = H \right\}}\\
+	 &= I - H {\color{red} - H + H} = I - H.
+	\end{align*}
+  \end{enumerate}
+
+\end{document}
