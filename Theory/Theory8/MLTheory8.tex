@@ -191,20 +191,78 @@ Deep Learning and Applications II
 
 
 \begin{frame}
-  \frametitle{History of deep learning}
+  \frametitle{Recap on Deep Learning}
+	Previous week:
+	\vspace{.5cm}
   \begin{itemize}
-	\item[1943] Computer model of artificial neuron [McCulloch and Pitts]
-	\item[1960-70] Backpropagation algorithm for training neural networks [Kelley; Bryson; Dreyfus; Ivakhnenko; Lapa; Werbos]
-	\item[1970-80] First AI winter
-	\item[1980-86] Modern version of backpropagation [Linnainmaa; Fukushima; Parker; Rumelhart et al.]
-	\item[1986-95] Second AI winter
-	\item[1995-] Novel network models, faster processors, GPUs
-	\item[2010-] Breakthrough of deep learning
+	\item Multi-Layer Perceptrons
+	\begin{itemize}
+\vspace{.1cm}
+	\item ``Vanilla'' feedforward Neural Network
+\vspace{.1cm}
+	\item Useful for complex function approximation
+\vspace{.1cm}
+	\item Backpropagation: chain rule for gradient updates
+	\end{itemize}
+	\vspace{.5cm}
+	\item Convolutional Neural Networks
+	\begin{itemize}
+\vspace{.1cm}
+	\item Very successful image processing applications
+\vspace{.1cm}
+	\item Key idea: convolutions add prior structure that allows for efficient learning via weight sharing
+	\end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Computational power}
+  \frametitle{Recap on Deep Learning}
+	The ``philosophy'' of Deep Learning
+	\vspace{.25cm}
+	\begin{itemize}
+	\item Let the data \emph{speak for itself} as much as possible:
+	\begin{itemize}
+	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
+	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
+	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
+	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
+	\end{itemize}
+	\vspace{.25cm}
+	\item Successful inductive biases:
+	\begin{itemize}
+	\vspace{.1cm}	\item Convolutions (CNNS)
+	\vspace{.1cm}	\item Recurrency (RNNS)
+	\vspace{.1cm}	\item Attention (Transformers)
+	\vspace{.1cm}	\item Graphs (GNNs)
+	\item ...
+	\end{itemize}
+	\end{itemize}
+%\centerline{\includegraphics[height=5cm]{images/decade-gpu-natoli.jpg}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Recap on Deep Learning}
+	The ``philosophy'' of Deep Learning
+	\vspace{.25cm}
+	\begin{itemize}
+	\item Let the data \emph{speak for itself} as much as possible:
+	\begin{itemize}
+	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
+	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
+	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
+	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
+	\end{itemize}
+	\vspace{.25cm}
+	\item Successful inductive biases:
+	\begin{itemize}
+	\vspace{.1cm}	\item Convolutions (CNNS)
+	\vspace{.1cm}	\item \textbf{TODAY: Recurrency (RNNS)}
+	\vspace{.1cm}	\item \textbf{TODAY: Attention (Transformers)}
+	\vspace{.1cm}	\item Graphs (GNNs)
+	\item ...
+	\end{itemize}
+	\end{itemize}
 %\centerline{\includegraphics[height=5cm]{images/decade-gpu-natoli.jpg}}
 \end{frame}
 
@@ -217,7 +275,6 @@ Deep Learning and Applications II
 \includegraphics[width=.9\textwidth]{images/s1}
 \end{center}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Feedforward vs Recurrent Neural Network}
@@ -288,7 +345,6 @@ Deep Learning and Applications II
 \includegraphics[width=.9\textwidth]{images/s10}
 \end{center}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Limitations of Vanilla RNNs}
@@ -409,6 +465,8 @@ Deep Learning and Applications II
 \scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
 \end{frame}
 
+
+\iffalse
 
 \section{Attention and Transformers} 
 
@@ -776,7 +834,6 @@ Far from \textbf{understanding} languange
 
 
 \section{Application: Language Models}
-
-
+\fi
 
 \end{document}
