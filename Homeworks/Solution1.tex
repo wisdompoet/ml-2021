@@ -28,14 +28,14 @@
 	 &= X \left(X^\top \left(X^\top\right)^\top\right)^{-1} X^\top & {\color{red} \left\{ (A^\top)^\top = A \right\}}\\
 	 &= X (X^\top X)^{-1} X^\top = H.
 	\end{align*}
-	\item $H^2 = HH = H$:
+	\item $H$ is idempotent, i.e.~$H^2 = HH = H$:
 	\begin{align*}
 	H^2 &= HH\\
 	 &= X{\color{red} (X^\top X)^{-1}X^\top X}(X^\top X)^{-1}X^\top & {\color{red} \left\{ A^{-1} A = I \right\}}\\
 	 &= {\color{red} XI}(X^\top X)^{-1}X^\top & {\color{red} \left\{ AI = A \right\}}\\
 	 &= X(X^\top X)^{-1}X^\top = H.
 	\end{align*}
-	\item $(I-H)^2 = (I-H)(I-H) = (I-H)$:
+	\item $I-H$ is idempotent, i.e.~$(I-H)^2 = (I-H)(I-H) = (I-H)$:
 	\begin{align*}
 	(I-H)^2 &= (I-H)(I-H)\\
 	 &= II - IH - HI + HH & {\color{red} \left\{ IA = A, AI = A, HH = H \right\}}\\
