@@ -1,0 +1,211 @@
+\documentclass[10pt]{beamer}
+\usetheme[
+%%% option passed to the outer theme
+%    progressstyle=fixedCircCnt,   % fixedCircCnt, movingCircCnt (moving is deault)
+  ]{Berlin}
+  
+% If you want to change the colors of the various elements in the theme, edit and uncomment the following lines
+
+% Change the bar colors:
+%\setbeamercolor{Feather}{fg=red!20,bg=red}
+
+% Change the color of the structural elements:
+%\setbeamercolor{structure}{fg=red}
+
+% Change the frame title text color:
+%\setbeamercolor{frametitle}{fg=blue}
+
+% Change the normal text color background:
+%\setbeamercolor{normal text}{fg=black,bg=gray!10}
+
+%-------------------------------------------------------
+% INCLUDE PACKAGES
+%-------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{helvet}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{matrix}
+\usepackage{marvosym}
+\usepackage[marvosym]{tikzsymbols}
+
+%-------------------------------------------------------
+% DEFFINING AND REDEFINING COMMANDS
+%-------------------------------------------------------
+
+% colored hyperlinks
+%\renewcommand*{\Footnotemark}[1]{\NCC@makefnmark{#1}}
+\newcommand{\chref}[2]{
+  \href{#1}{{\usebeamercolor[bg]{Feather}#2}}
+}
+\newcommand{\tuple}[1]{{\langle #1 \rangle}}
+\newcommand{\pre}{\mathsf{pre}}     % precondition
+\newcommand{\eff}{\mathsf{eff}}     % effect
+\newcommand{\cond}{\mathsf{cond}}   % conditional effect
+
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\Dw}{\mathcal{D}}
+\newcommand{\Xw}{\mathcal{X}}
+\newcommand{\Aw}{\mathcal{A}}
+\newcommand{\Rw}{\mathcal{R}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\tOO}{\wt{\OO}}
+\newcommand{\II}[1]{\mathbb{I}{\left\{#1\right\}}}
+\newcommand{\PP}[1]{\mathbb{P}\left[#1\right]}
+\newcommand{\EE}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\EEs}[2]{\mathbb{E}_{#2}\left[#1\right]}
+\newcommand{\PPt}[1]{\mathbb{P}_t\left[#1\right]}
+\newcommand{\EEt}[1]{\mathbb{E}_t\left[#1\right]}
+\newcommand{\PPi}[1]{\mathbb{P}_i\left[#1\right]}
+\newcommand{\EEi}[1]{\mathbb{E}_i\left[#1\right]}
+\newcommand{\EEp}[1]{\mathbb{E}_{\pi,P}\left[#1\right]}
+\newcommand{\EEcp}[2]{\mathbb{E}_{\pi,P}\left[\left.#1\right|#2\right]}
+\newcommand{\PPc}[2]{\mathbb{P}\left[#1\left|#2\right.\right]}
+\newcommand{\PPct}[2]{\mathbb{P}_t\left[#1\left|#2\right.\right]}
+\newcommand{\PPcc}[2]{\mathbb{P}\left[\left.#1\right|#2\right]}
+\newcommand{\PPcct}[2]{\mathbb{P}_t\left[\left.#1\right|#2\right]}
+\newcommand{\PPcci}[2]{\mathbb{P}_i\left[\left.#1\right|#2\right]}
+\newcommand{\EEc}[2]{\mathbb{E}\left[#1\left|#2\right.\right]}
+\newcommand{\EEcc}[2]{\mathbb{E}\left[\left.#1\right|#2\right]}
+\newcommand{\EEcs}[3]{\mathbb{E}_{#3}\left[\left.#1\right|#2\right]}
+\newcommand{\EEcct}[2]{\mathbb{E}_t\left[\left.#1\right|#2\right]}
+\newcommand{\EEcci}[2]{\mathbb{E}_i\left[\left.#1\right|#2\right]}
+\renewcommand{\th}{\ensuremath{^{\mathrm{th}}}}
+\def\argmin{\mathop{\mbox{ arg\,min}}}
+\def\argmax{\mathop{\mbox{ arg\,max}}}
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\onenorm}[1]{\norm{#1}_1}
+\newcommand{\infnorm}[1]{\norm{#1}_\infty}
+\newcommand{\iprod}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\ev}[1]{\left\{#1\right\}}
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bpa}[1]{\bigl(#1\bigr)}
+\newcommand{\Bpa}[1]{\Bigl(#1\Bigr)}
+\newcommand{\sign}{\mbox{sign}}
+\newcommand{\wh}{\widehat}
+\newcommand{\wt}{\widetilde}
+\newcommand{\transpose}{^\top}
+
+\newcommand{\loss}{\ell}
+\newcommand{\hloss}{\wh{\loss}}
+\newcommand{\hL}{\wh{L}}
+\newcommand{\tZ}{\wt{Z}}
+\newcommand{\reg}{\mathfrak{R}}
+\newcommand{\hreg}{\widehat{\reg}}
+\newcommand{\hr}{\wh{r}}
+\newcommand{\hv}{\wh{v}}
+\newcommand{\hq}{\wh{q}}
+\newcommand{\hmu}{\wh{\mu}}
+\newcommand{\hR}{\wh{R}}
+\newcommand{\tmu}{\wt{\mu}}
+\newcommand{\tN}{\wt{N}}
+\newcommand{\RE}[2]{\mbox{RE}\left(\left.#1\right\|#2\right)}
+\newcommand{\KL}[2]{\mbox{KL}\left(#1\middle\lVert#2\right)}
+\newcommand{\DD}[3]{D_{#3}\left(#1\middle\lVert#2\right)}
+\newcommand{\DDC}[2]{\DD{#1}{#2}{C}}
+\newcommand{\DDS}[2]{\DD{#1}{#2}{S}}
+
+\newcommand{\trho}{\wt{\rho}}
+
+\definecolor{gold}{rgb}{1,0.75,0}
+\definecolor{darkred}{rgb}{0.75,0,0}
+\setbeamercolor*{goldc}{fg=black,bg=gold}
+\definecolor{darkpurp}{rgb}{0.4,0.2,0.4}
+\setbeamercolor*{purpc}{fg=white,bg=darkpurp}
+\setbeamercolor*{redc}{fg=white,bg=darkred}
+\newcommand{\hG}[1]{\large \textcolor{darkred}{#1}}
+
+\newcommand{\redd}[1]{\textcolor{darkred}{#1}}
+\newcommand{\goldd}[1]{\textcolor{gold}{#1}}
+
+\definecolor{ballblue}{rgb}{0.0, 0.5, 0.5}
+\definecolor{lightgray}{rgb}{0.85, 0.85, 0.85}
+
+%-------------------------------------------------------
+% INFORMATION IN THE TITLE PAGE
+%-------------------------------------------------------
+
+\title[] % [] is optional - is placed on the bottom of the sidebar on every slide
+{ % is placed on the title page
+      \textbf{Machine Learning}
+}
+
+\author[Jonsson \& G\'omez]
+{      Anders Jonsson \& \textbf{Vicen\c{c} G\'omez} \\
+\vspace*{0.5cm}
+Master in Intelligence Interactive Systems\\
+2021-22\\
+\vspace*{0.5cm}
+Lecture 8\\
+Deep Learning and Applications II
+%      {\ttfamily bagchi.bhaskar@cse.iitkgp.ernet.in}
+}
+
+\date{}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Content}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+%-------------------------------------------------------
+% THE BODY OF THE PRESENTATION
+%-------------------------------------------------------
+
+\begin{document}
+
+%-------------------------------------------------------
+% THE TITLEPAGE
+%-------------------------------------------------------
+
+\begin{frame}[plain,noframenumbering] % the plain option removes the header from the title page, noframenumbering removes the numbering of this frame only
+  \titlepage % call the title page information from above
+\end{frame}
+
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+\section{History of deep learning}
+
+\begin{frame}
+  \frametitle{History of deep learning}
+  \begin{itemize}
+	\item[1943] Computer model of artificial neuron [McCulloch and Pitts]
+	\item[1960-70] Backpropagation algorithm for training neural networks [Kelley; Bryson; Dreyfus; Ivakhnenko; Lapa; Werbos]
+	\item[1970-80] First AI winter
+	\item[1980-86] Modern version of backpropagation [Linnainmaa; Fukushima; Parker; Rumelhart et al.]
+	\item[1986-95] Second AI winter
+	\item[1995-] Novel network models, faster processors, GPUs
+	\item[2010-] Breakthrough of deep learning
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Computational power}
+%\centerline{\includegraphics[height=5cm]{images/decade-gpu-natoli.jpg}}
+\end{frame}
+
+
+\end{document}
