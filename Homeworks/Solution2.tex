@@ -51,6 +51,7 @@
 	\item $h(x) = f(Ax + b)$, for any $d\times d$ matrix $A$ and $d\times 1$ vector $b$:
 	\begin{align*}
 	h(\alpha x_1 + (1-\alpha)x_2) &= f(A(\alpha x_1 + (1-\alpha)x_2) + b)\\
+	 & \hspace*{1cm} {\color{red} \{ b = \alpha b + (1 - \alpha) b\}}\\
 	 &= f( \alpha ( Ax_1 + b ) + (1-\alpha) ( Ax_2 + b ) )\\
 	 &\leq \alpha f(Ax_1 + b) + (1-\alpha) f(Ax_2 + b)\\
 	 &= \alpha h(x_1) + (1-\alpha) h(x_2).
