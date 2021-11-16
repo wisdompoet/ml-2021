@@ -223,6 +223,7 @@ Deep Learning and Applications II
 	\item Let the data \emph{speak for itself} as much as possible:
 	\begin{itemize}
 	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
+	\vspace{.1cm}	\item The weights learn a {\color{blue} distributed representation} of the data
 	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
 	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
 	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
@@ -249,6 +250,7 @@ Deep Learning and Applications II
 	\item Let the data \emph{speak for itself} as much as possible:
 	\begin{itemize}
 	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
+	\vspace{.1cm}	\item The weights learn a {\color{blue} distributed representation} of the data
 	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
 	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
 	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
@@ -271,15 +273,28 @@ Deep Learning and Applications II
 
 \begin{frame}
   \frametitle{Recurrent Neural Networks}
-\begin{center}
-\includegraphics[width=.9\textwidth]{images/s1}
-\end{center}
+Sequence models
+\vspace{.5cm}
+\begin{itemize}
+	\vspace{.1cm}	\item Allow for data with different variable length structured data 
+	\vspace{.1cm}	\item Include feedback connections
+	\vspace{.1cm}	\item Weight sharing accross steps
+	\vspace{.1cm}	\item Can be easily combined with other architectures, e.g., CNNs
+\end{itemize}
 \end{frame}
+
+
+%\begin{frame}
+%  \frametitle{Recurrent Neural Networks}
+%\begin{center}
+%\includegraphics[width=.9\textwidth]{images/s1}
+%\end{center}
+%\end{frame}
 
 \begin{frame}
   \frametitle{Feedforward vs Recurrent Neural Network}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s2}
+\includegraphics[width=\textwidth]{images/s2}
 \end{center}
 \end{frame}
 
@@ -287,7 +302,7 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{Basic Recurrent Neural Network}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s3}
+\includegraphics[width=\textwidth]{images/s3}
 \end{center}
 \end{frame}
 
@@ -295,7 +310,7 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{Basic Recurrent Neural Network}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s4}
+\includegraphics[width=\textwidth]{images/s4}
 \end{center}
 \end{frame}
 
@@ -303,7 +318,7 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{Mapping Types}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s5}
+\includegraphics[width=\textwidth]{images/s5}
 \end{center}
 \end{frame}
 
@@ -311,22 +326,14 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{Backpropagation Through Time}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s6}
+\includegraphics[width=\textwidth]{images/s6}
 \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{(Truncated) Backpropagation Through Time}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s7}
-\end{center}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{(Truncated) Backpropagation Through Time}
-\begin{center}
-\includegraphics[width=.9\textwidth]{images/s8}
+\includegraphics[width=\textwidth]{images/s7}
 \end{center}
 \end{frame}
 
@@ -334,7 +341,15 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{(Truncated) Backpropagation Through Time}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s9}
+\includegraphics[width=\textwidth]{images/s8}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{(Truncated) Backpropagation Through Time}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s9}
 \end{center}
 \end{frame}
 
@@ -342,7 +357,7 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{Multi-Layer RNNs}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s10}
+\includegraphics[width=\textwidth]{images/s10}
 \end{center}
 \end{frame}
 
@@ -350,25 +365,25 @@ Deep Learning and Applications II
   \frametitle{Limitations of Vanilla RNNs}
 \textbf{What is the problem with vanilla RNNs?}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/s11}
+\includegraphics[width=\textwidth]{images/s11}
 \end{center}
 \vspace{-.25cm}
 \begin{center}
-\includegraphics[width=.85\textwidth]{images/s12}
+\includegraphics[width=\textwidth]{images/s12}
 \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Vanishing-Exploding Gradients}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s13}
+\includegraphics[width=\textwidth]{images/s13}
 \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Vanishing-Exploding Gradients}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s14}
+\includegraphics[width=\textwidth]{images/s14}
 \end{center}
 \end{frame}
 
@@ -384,89 +399,87 @@ Deep Learning and Applications II
 \begin{frame}
   \frametitle{Gradient Clipping}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s16}
+\includegraphics[width=\textwidth]{images/s16}
 \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Gated Recurrent Networks}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s17}
+\includegraphics[width=\textwidth]{images/s17}
 \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Gradient Flow}
+  \frametitle{Update Gate RNN (UGRNN): Gradient Flow}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s18}
+\includegraphics[width=\textwidth]{images/s18}
 \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Gradient Flow}
+  \frametitle{Update Gate RNN (UGRNN): Gradient Flow}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s19}
-\end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Gated Recurrent Unit (GRU)}
-\begin{center}
-\includegraphics[width=.9\textwidth]{images/s20}
+\includegraphics[width=\textwidth]{images/s19}
 \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Gated Recurrent Unit (GRU)}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/s21}
+\includegraphics[width=\textwidth]{images/s20}
 \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Gated Recurrent Unit (GRU)}
+  \frametitle{Long Short-Term Memory (LSTM)}
 \begin{center}
-\includegraphics[width=.95\textwidth]{images/missing}
+\includegraphics[width=\textwidth]{images/s21}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Three Popular Recurrent Models}
+\begin{center}
+\includegraphics[width=\textwidth]{images/missing}
 \end{center}
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Sequence to Sequence Learning}
+  \frametitle{Application: Neural Machine Translation}
 \begin{center}
-\includegraphics[width=.9\textwidth]{images/sa}
+\includegraphics[width=\textwidth]{images/sa}
 \end{center}
 \scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Decoding}
+  \frametitle{Neural Machine Translation: Decoding}
 \begin{center}
-\includegraphics[width=.85\textwidth]{images/sb}
+\includegraphics[width=\textwidth]{images/sb}
 \end{center}
 \scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Beam Search}
+  \frametitle{Neural Machine Translation: Beam Search}
 \begin{center}
 \includegraphics[width=.95\textwidth]{images/sc}
 \end{center}
+\vspace{1cm}
 \scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Beam Search}
+  \frametitle{Neural Machine Translation: Beam Search}
 \begin{center}
 \includegraphics[width=.7\textwidth]{images/sd}
 \end{center}
 \scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
 \end{frame}
-
-
-\iffalse
 
 \section{Attention and Transformers} 
 
@@ -492,20 +505,27 @@ Deep Learning and Applications II
  
 \begin{itemize}[<+->]
 \item Mimics the retrieval of a \textbf{value} $v_i$ for a \textbf{query} $q$
-based on a \textbf{key} $k_i$ in a database
-\item In a probabilistic way
+based on a \textbf{key} $k_i$ in a database in a probabilistic way
 \begin{align*}
-\text{attention}(q,\textbf{k},\textbf{v}) & = \sum_i \underbrace{\text{similarity}(q,k_i)}_{\alpha_i}\cdot v_i
+\text{similarity}(q,k_i) = q k_i^\top
+& & \text{$q$ and $k_i$ have dim $d_k$}
 \end{align*}
-\item The \textbf{query} $q$ and \textbf{key} $k_i$ are embedding vectors
-\item Typically, $\text{similarity}$ is chosen to be the dot product
-\item The produced output is a linear combination of values (also embedding vectors) $v_i$
-\item Example:
-\begin{itemize}
-\item $q$ : possible question (Q)
-\item $k_i$ : potentially useful information to answer (K)
-\item $v_i$ : potential answer (V)
-\end{itemize}
+\item Similarities are turned into probabilities through a soft-max
+\begin{align*}
+\alpha_i & = \frac{\exp(\frac{1}{\sqrt{d_k}} q k_i^\top)}{\sum_j \exp(\frac{1}{\sqrt{d_k}}q k_j^\top)}
+\end{align*}
+\item The produced output is a linear combination of values (embedding vectors) $v_i$
+\begin{align*}
+\text{attention}(q,\textbf{k},\textbf{v}) & = \sum_i \alpha_i \cdot v_i
+\end{align*}
+\item The \textbf{query} $q$ and \textbf{key} $k_i$ are also embedding vectors
+\item Other $\text{similarity}$ measures are used
+%\item Example:
+%\begin{itemize}
+%\item $q$ : possible question (Q)
+%\item $k_i$ : potentially useful information to answer (K)
+%\item $v_i$ : potential answer (V)
+%\end{itemize}
 \item Everything is learned from data
 \end{itemize}
 \end{frame}
@@ -513,7 +533,7 @@ based on a \textbf{key} $k_i$ in a database
 \begin{frame}
   \frametitle{The Transformer Network}
   \begin{columns}
-    \column[c]{.55\textwidth}    
+    \column[c]{.65\textwidth}    
 \begin{itemize}
 \setlength\itemsep{.8em}
 \item Initially developed for machine translation
@@ -535,6 +555,7 @@ based on a \textbf{key} $k_i$ in a database
 	\includegraphics[width=.7\columnwidth]{images/transf}
 \end{center}
     \end{columns}
+\vspace{1cm}
 \scriptsize{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser and Polosukhin: Attention is All you Need. NIPS, 2017.}
 \end{frame}
 
@@ -542,7 +563,7 @@ based on a \textbf{key} $k_i$ in a database
 \begin{frame}
   \frametitle{The Transformer Network: Encoder}
   \begin{columns}
-    \column[c]{.7\textwidth}    
+    \column[c]{.8\textwidth}    
 \begin{itemize}
 \setlength\itemsep{.8em}
 \item Input embedding: zero-order embedding (size $n$)
@@ -575,14 +596,12 @@ based on a \textbf{key} $k_i$ in a database
 	\includegraphics[width=.47\columnwidth]{images/att2}
 \end{center}
     \end{columns}
+Three types of attention modules
 \begin{itemize}
-\item Three types of attention modules
-\begin{itemize}
-\item Encoder: self-attention (key, value and query are input embeddings) 
-\item Encoder $\rightarrow$ Decoder : query (output embedding), key and value (input embeddings) 
-\item Decoder: self-attention (key, value and query are input embeddings)
+\item Encoder: self-attention (K, V and Q are input embeddings) 
+\item Encoder $\rightarrow$ Decoder : Q (output embedding), K and V (input embeddings) 
+\item Decoder: self-attention (K, V and Q are input embeddings)
 and masked attention (prevents attending future words)
-\end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -621,7 +640,7 @@ and masked attention (prevents attending future words)
 \begin{frame}
   \frametitle{The Transformer Network: Decoder}
   \begin{columns}
-    \column[c]{.7\textwidth}    
+    \column[c]{.8\textwidth}    
 \begin{itemize}
 \setlength\itemsep{.8em}
 \item Similar to encoder
@@ -834,6 +853,5 @@ Far from \textbf{understanding} languange
 
 
 \section{Application: Language Models}
-\fi
 
 \end{document}
