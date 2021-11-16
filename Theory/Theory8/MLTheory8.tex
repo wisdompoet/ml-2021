@@ -148,7 +148,7 @@
       \textbf{Machine Learning}
 }
 
-\author[Jonsson \& G\'omez]
+\author[Deep Learning II]
 {      Anders Jonsson \& \textbf{Vicen\c{c} G\'omez} \\
 \vspace*{0.5cm}
 Master in Intelligence Interactive Systems\\
@@ -223,7 +223,7 @@ Deep Learning and Applications II
 	\item Let the data \emph{speak for itself} as much as possible:
 	\begin{itemize}
 	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
-	\vspace{.1cm}	\item The weights learn a {\color{blue} distributed representation} of the data
+	\vspace{.1cm}	\item The weights learn a {\color{blue} distributed representation} (embedding) of the data
 	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
 	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
 	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
@@ -518,8 +518,9 @@ based on a \textbf{key} $k_i$ in a database in a probabilistic way
 \begin{align*}
 \text{attention}(q,\textbf{k},\textbf{v}) & = \sum_i \alpha_i \cdot v_i
 \end{align*}
-\item The \textbf{query} $q$ and \textbf{key} $k_i$ are also embedding vectors
-\item Other $\text{similarity}$ measures are used
+\item Retrieval process is a convex combination of values with weights given by the attention coefficients
+%The \textbf{query} $q$ and \textbf{key} $k_i$ are also embedding vectors
+%\item Other $\text{similarity}$ measures are used
 %\item Example:
 %\begin{itemize}
 %\item $q$ : possible question (Q)
@@ -539,8 +540,8 @@ based on a \textbf{key} $k_i$ in a database in a probabilistic way
 \item Initially developed for machine translation
 \item No recurrence
 \begin{itemize}
-\item Input: entire sequence to translate
-\item Output: entire translated sequence
+\item \textbf{Input}: entire sequence to translate
+\item \textbf{Output}: entire translated sequence
 \end{itemize}
 \item Encoder-decoder based on attention 
 \item Key idea: learns abstract embeddings
@@ -552,7 +553,7 @@ based on a \textbf{key} $k_i$ in a database in a probabilistic way
 \end{itemize}
     \column[c]{.45\textwidth}
 \begin{center}
-	\includegraphics[width=.7\columnwidth]{images/transf}
+	\includegraphics[width=.9\columnwidth]{images/transf}
 \end{center}
     \end{columns}
 \vspace{1cm}
@@ -566,16 +567,16 @@ based on a \textbf{key} $k_i$ in a database in a probabilistic way
     \column[c]{.8\textwidth}    
 \begin{itemize}
 \setlength\itemsep{.8em}
-\item Input embedding: zero-order embedding (size $n$)
-\item Positional Encodings: concatenates positional information
-\item Multi-headed attention (see next slide)
-\item Normalization layer: reduces "covariance shift" and speeds up converge
-\item Feedforward layer: shared weights within layer 
+\item Input \textbf{embedding}: zero-order embedding (size $n$)
+\item \textbf{Positional Encodings}: concatenates positional information
+\item {\color{red} Multi-headed attention} (see next slide)
+\item \textbf{Normalization} layer: reduces ``covariance shift'' and speeds up converge
+\item \textbf{Feedforward} layer: shared weights within layer 
 \item Output: a higher order embedding of the sentence (size $n$)
 \end{itemize}
     \column[c]{.3\textwidth}
 \begin{center}
-	\includegraphics[width=.6\columnwidth]{images/enc}
+	\includegraphics[width=.8\columnwidth]{images/enc}
 \end{center}
     \end{columns}
 \vspace{.75cm}
@@ -598,9 +599,9 @@ based on a \textbf{key} $k_i$ in a database in a probabilistic way
     \end{columns}
 Three types of attention modules
 \begin{itemize}
-\item Encoder: self-attention (K, V and Q are input embeddings) 
-\item Encoder $\rightarrow$ Decoder : Q (output embedding), K and V (input embeddings) 
-\item Decoder: self-attention (K, V and Q are input embeddings)
+\item \textbf{Encoder}: self-attention (K, V and Q are input embeddings) 
+\item \textbf{Encoder $\rightarrow$ Decoder}: Q (output embedding), K and V (input embeddings) 
+\item \textbf{Decoder}: self-attention (K, V and Q are input embeddings)
 and masked attention (prevents attending future words)
 \end{itemize}
 
@@ -645,13 +646,13 @@ and masked attention (prevents attending future words)
 \setlength\itemsep{.8em}
 \item Similar to encoder
 \item When decoding, an output value should only depend on previous outputs
-\item Masked multi-head attention: multi-head where some values are 
-masked (i.e., probabilisties of masked values are nullified to prevent them from being selected)
+\item \textbf{Masked} multi-head attention: multi-head where some values are 
+masked (i.e., probabilities of masked values are nullified to prevent them from being selected)
 \item Teacher forcing (trained with correct output word)
 \end{itemize}
     \column[c]{.3\textwidth}
 \begin{center}
-	\includegraphics[width=.5\columnwidth]{images/dec}
+	\includegraphics[width=.68\columnwidth]{images/dec}
 \end{center}
     \end{columns}
 \vspace{.25cm}
@@ -663,15 +664,15 @@ masked (i.e., probabilisties of masked values are nullified to prevent them from
 {\color{red}\textbf{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding}
 
 \begin{itemize}
-\setlength\itemsep{.8em}
+\setlength\itemsep{.6em}
 \item Does not predict next words sequentially
 \item Uses a context composed of previous and future words
 \item Masked language modeling (MLM) like ``fill the gaps''
 \item Text encoding, summarization, Question Answering
 \item Two training phases
 \begin{itemize}
-\item First: unsupervised training (basically a Transformer \textbf{Encoder} stack)
-\item Second: specific fine-tuning for a particular task
+\item 1st: unsupervised (basically a Transformer \textbf{Encoder} stack)
+\item 2nd: specific fine-tuning for a particular task
 \end{itemize} 
 \end{itemize} 
 \vspace{.5cm}
@@ -688,7 +689,7 @@ masked (i.e., probabilisties of masked values are nullified to prevent them from
 \item Trained unsupervised on a large corpus to predict the next word
 \item ``prompts'' the language model with different inputs
 \end{itemize}
-	\includegraphics[width=\columnwidth]{images/gptc}
+	\includegraphics[width=1.05\columnwidth]{images/gptc}
 \vspace{.05cm}
 
 \scriptsize{Radford et al. Language models are unsupervised multitask learners (2019).\\
