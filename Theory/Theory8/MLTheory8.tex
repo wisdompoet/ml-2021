@@ -148,7 +148,7 @@
       \textbf{Machine Learning}
 }
 
-\author[Jonsson \& G\'omez]
+\author[Deep Learning II]
 {      Anders Jonsson \& \textbf{Vicen\c{c} G\'omez} \\
 \vspace*{0.5cm}
 Master in Intelligence Interactive Systems\\
@@ -187,25 +187,672 @@ Deep Learning and Applications II
     \tableofcontents
 \end{frame}
 
-\section{History of deep learning}
+\section{Recap}
+
 
 \begin{frame}
-  \frametitle{History of deep learning}
+  \frametitle{Recap on Deep Learning}
+	Previous week:
+	\vspace{.5cm}
   \begin{itemize}
-	\item[1943] Computer model of artificial neuron [McCulloch and Pitts]
-	\item[1960-70] Backpropagation algorithm for training neural networks [Kelley; Bryson; Dreyfus; Ivakhnenko; Lapa; Werbos]
-	\item[1970-80] First AI winter
-	\item[1980-86] Modern version of backpropagation [Linnainmaa; Fukushima; Parker; Rumelhart et al.]
-	\item[1986-95] Second AI winter
-	\item[1995-] Novel network models, faster processors, GPUs
-	\item[2010-] Breakthrough of deep learning
+	\item Multi-Layer Perceptrons
+	\begin{itemize}
+\vspace{.1cm}
+	\item ``Vanilla'' feedforward Neural Network
+\vspace{.1cm}
+	\item Useful for complex function approximation
+\vspace{.1cm}
+	\item Backpropagation: chain rule for gradient updates
+	\end{itemize}
+	\vspace{.5cm}
+	\item Convolutional Neural Networks
+	\begin{itemize}
+\vspace{.1cm}
+	\item Very successful image processing applications
+\vspace{.1cm}
+	\item Key idea: convolutions add prior structure that allows for efficient learning via weight sharing
+	\end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Computational power}
+  \frametitle{Recap on Deep Learning}
+	The ``philosophy'' of Deep Learning
+	\vspace{.25cm}
+	\begin{itemize}
+	\item Let the data \emph{speak for itself} as much as possible:
+	\begin{itemize}
+	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
+	\vspace{.1cm}	\item The weights learn a {\color{blue} distributed representation} (embedding) of the data
+	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
+	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
+	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
+	\end{itemize}
+	\vspace{.25cm}
+	\item Successful inductive biases:
+	\begin{itemize}
+	\vspace{.1cm}	\item Convolutions (CNNS)
+	\vspace{.1cm}	\item Recurrency (RNNS)
+	\vspace{.1cm}	\item Attention (Transformers)
+	\vspace{.1cm}	\item Graphs (GNNs)
+	\item ...
+	\end{itemize}
+	\end{itemize}
 %\centerline{\includegraphics[height=5cm]{images/decade-gpu-natoli.jpg}}
 \end{frame}
 
+
+\begin{frame}
+  \frametitle{Recap on Deep Learning}
+	The ``philosophy'' of Deep Learning
+	\vspace{.25cm}
+	\begin{itemize}
+	\item Let the data \emph{speak for itself} as much as possible:
+	\begin{itemize}
+	\vspace{.1cm}	\item {\color{blue} Inductive bias}: the architecture captures invariances in the data
+	\vspace{.1cm}	\item The weights learn a {\color{blue} distributed representation} of the data
+	\vspace{.1cm}	\item {\color{blue} Weight sharing}: boosts sample efficiency
+	\vspace{.1cm}	\item {\color{blue} Gradient-based} Optimization
+	\vspace{.1cm}	\item {\color{blue} End-to-End} learning
+	\end{itemize}
+	\vspace{.25cm}
+	\item Successful inductive biases:
+	\begin{itemize}
+	\vspace{.1cm}	\item Convolutions (CNNS)
+	\vspace{.1cm}	\item \textbf{TODAY: Recurrency (RNNS)}
+	\vspace{.1cm}	\item \textbf{TODAY: Attention (Transformers)}
+	\vspace{.1cm}	\item Graphs (GNNs)
+	\item ...
+	\end{itemize}
+	\end{itemize}
+%\centerline{\includegraphics[height=5cm]{images/decade-gpu-natoli.jpg}}
+\end{frame}
+
+
+\section{Recurrent Neural Networks}
+
+\begin{frame}
+  \frametitle{Recurrent Neural Networks}
+Sequence models
+\vspace{.5cm}
+\begin{itemize}
+	\vspace{.1cm}	\item Allow for data with different variable length structured data 
+	\vspace{.1cm}	\item Include feedback connections
+	\vspace{.1cm}	\item Weight sharing accross steps
+	\vspace{.1cm}	\item Can be easily combined with other architectures, e.g., CNNs
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%  \frametitle{Recurrent Neural Networks}
+%\begin{center}
+%\includegraphics[width=.9\textwidth]{images/s1}
+%\end{center}
+%\end{frame}
+
+\begin{frame}
+  \frametitle{Feedforward vs Recurrent Neural Network}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s2}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Basic Recurrent Neural Network}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s3}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Basic Recurrent Neural Network}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s4}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Mapping Types}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s5}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Backpropagation Through Time}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s6}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{(Truncated) Backpropagation Through Time}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s7}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{(Truncated) Backpropagation Through Time}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s8}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{(Truncated) Backpropagation Through Time}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s9}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Multi-Layer RNNs}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s10}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limitations of Vanilla RNNs}
+\textbf{What is the problem with vanilla RNNs?}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s11}
+\end{center}
+\vspace{-.25cm}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s12}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vanishing-Exploding Gradients}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s13}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vanishing-Exploding Gradients}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s14}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Vanishing-Exploding Gradients}
+\begin{center}
+\includegraphics[width=.95\textwidth]{images/s15}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Gradient Clipping}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s16}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Gated Recurrent Networks}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s17}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Update Gate RNN (UGRNN): Gradient Flow}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s18}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Update Gate RNN (UGRNN): Gradient Flow}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s19}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Gated Recurrent Unit (GRU)}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s20}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Long Short-Term Memory (LSTM)}
+\begin{center}
+\includegraphics[width=\textwidth]{images/s21}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Three Popular Recurrent Models}
+\begin{center}
+\includegraphics[width=\textwidth]{images/missing}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Application: Neural Machine Translation}
+\begin{center}
+\includegraphics[width=\textwidth]{images/sa}
+\end{center}
+\scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Neural Machine Translation: Decoding}
+\begin{center}
+\includegraphics[width=\textwidth]{images/sb}
+\end{center}
+\scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Neural Machine Translation: Beam Search}
+\begin{center}
+\includegraphics[width=.95\textwidth]{images/sc}
+\end{center}
+\vspace{1cm}
+\scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Neural Machine Translation: Beam Search}
+\begin{center}
+\includegraphics[width=.7\textwidth]{images/sd}
+\end{center}
+\scriptsize{Sutskever, Vinyals and Le: Sequence to Sequence Learning with Neural Networks. NIPS, 2014}
+\end{frame}
+
+\section{Attention and Transformers} 
+
+\begin{frame}
+  \frametitle{Attention}
+\begin{center}
+\includegraphics[width=.9\textwidth]{images/p1}
+\end{center}
+
+\scriptsize{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser and Polosukhin: Attention is All you Need. NIPS, 2017.}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Attention}
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/p2}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Attention Mechanism}
+ 
+\begin{itemize}[<+->]
+\item Mimics the retrieval of a \textbf{value} $v_i$ for a \textbf{query} $q$
+based on a \textbf{key} $k_i$ in a database in a probabilistic way
+\begin{align*}
+\text{similarity}(q,k_i) = q k_i^\top
+& & \text{$q$ and $k_i$ have dim $d_k$}
+\end{align*}
+\item Similarities are turned into probabilities through a soft-max
+\begin{align*}
+\alpha_i & = \frac{\exp(\frac{1}{\sqrt{d_k}} q k_i^\top)}{\sum_j \exp(\frac{1}{\sqrt{d_k}}q k_j^\top)}
+\end{align*}
+\item The produced output is a linear combination of values (embedding vectors) $v_i$
+\begin{align*}
+\text{attention}(q,\textbf{k},\textbf{v}) & = \sum_i \alpha_i \cdot v_i
+\end{align*}
+\item Retrieval process is a convex combination of values with weights given by the attention coefficients
+%The \textbf{query} $q$ and \textbf{key} $k_i$ are also embedding vectors
+%\item Other $\text{similarity}$ measures are used
+%\item Example:
+%\begin{itemize}
+%\item $q$ : possible question (Q)
+%\item $k_i$ : potentially useful information to answer (K)
+%\item $v_i$ : potential answer (V)
+%\end{itemize}
+\item Everything is learned from data
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Transformer Network}
+  \begin{columns}
+    \column[c]{.65\textwidth}    
+\begin{itemize}
+\setlength\itemsep{.8em}
+\item Initially developed for machine translation
+\item No recurrence
+\begin{itemize}
+\item \textbf{Input}: entire sequence to translate
+\item \textbf{Output}: entire translated sequence
+\end{itemize}
+\item Encoder-decoder based on attention 
+\item Key idea: learns abstract embeddings
+\begin{itemize}
+\item 1st layer: pairs of embeddings
+\item 2st layer: pairs of pairs of embeddings
+\item Up to $N=6$ layers
+\end{itemize}
+\end{itemize}
+    \column[c]{.45\textwidth}
+\begin{center}
+	\includegraphics[width=.9\columnwidth]{images/transf}
+\end{center}
+    \end{columns}
+\vspace{1cm}
+\scriptsize{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser and Polosukhin: Attention is All you Need. NIPS, 2017.}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The Transformer Network: Encoder}
+  \begin{columns}
+    \column[c]{.8\textwidth}    
+\begin{itemize}
+\setlength\itemsep{.8em}
+\item Input \textbf{embedding}: zero-order embedding (size $n$)
+\item \textbf{Positional Encodings}: concatenates positional information
+\item {\color{red} Multi-headed attention} (see next slide)
+\item \textbf{Normalization} layer: reduces ``covariance shift'' and speeds up converge
+\item \textbf{Feedforward} layer: shared weights within layer 
+\item Output: a higher order embedding of the sentence (size $n$)
+\end{itemize}
+    \column[c]{.3\textwidth}
+\begin{center}
+	\includegraphics[width=.8\columnwidth]{images/enc}
+\end{center}
+    \end{columns}
+\vspace{.75cm}
+\scriptsize{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser and Polosukhin: Attention is All you Need. NIPS, 2017.}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Attention in the Transformer}
+
+  \begin{columns}
+    \column[c]{.47\textwidth}    
+\begin{center}
+	\includegraphics[width=.55\columnwidth]{images/att1}
+\end{center}
+    \column[c]{.52\textwidth}
+\begin{center}
+	\includegraphics[width=.47\columnwidth]{images/att2}
+\end{center}
+    \end{columns}
+Three types of attention modules
+\begin{itemize}
+\item \textbf{Encoder}: self-attention (K, V and Q are input embeddings) 
+\item \textbf{Encoder $\rightarrow$ Decoder}: Q (output embedding), K and V (input embeddings) 
+\item \textbf{Decoder}: self-attention (K, V and Q are input embeddings)
+and masked attention (prevents attending future words)
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Attention in the Transformer}
+
+  \begin{columns}
+    \column[c]{.47\textwidth}    
+\begin{center}
+	\includegraphics[width=.55\columnwidth]{images/att1}
+\end{center}
+    \column[c]{.52\textwidth}
+\begin{center}
+	\includegraphics[width=.47\columnwidth]{images/att2}
+\end{center}
+    \end{columns}
+\begin{itemize}
+\item Multi-head attention
+\begin{itemize}
+\item Computer multiple attentions per query with different weights
+\item Lets network learn different semantic meanings of attention
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multi-headed Attention Visualization}
+\begin{center}
+	\includegraphics[width=.9\columnwidth]{images/attnA}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The Transformer Network: Decoder}
+  \begin{columns}
+    \column[c]{.8\textwidth}    
+\begin{itemize}
+\setlength\itemsep{.8em}
+\item Similar to encoder
+\item When decoding, an output value should only depend on previous outputs
+\item \textbf{Masked} multi-head attention: multi-head where some values are 
+masked (i.e., probabilities of masked values are nullified to prevent them from being selected)
+\item Teacher forcing (trained with correct output word)
+\end{itemize}
+    \column[c]{.3\textwidth}
+\begin{center}
+	\includegraphics[width=.68\columnwidth]{images/dec}
+\end{center}
+    \end{columns}
+\vspace{.25cm}
+\scriptsize{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser and Polosukhin: Attention is All you Need. NIPS, 2017.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformer-based Models (BERT)}
+{\color{red}\textbf{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding}
+
+\begin{itemize}
+\setlength\itemsep{.6em}
+\item Does not predict next words sequentially
+\item Uses a context composed of previous and future words
+\item Masked language modeling (MLM) like ``fill the gaps''
+\item Text encoding, summarization, Question Answering
+\item Two training phases
+\begin{itemize}
+\item 1st: unsupervised (basically a Transformer \textbf{Encoder} stack)
+\item 2nd: specific fine-tuning for a particular task
+\end{itemize} 
+\end{itemize} 
+\vspace{.5cm}
+\scriptsize{Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2018)}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformer-based Models (GPT)}
+{\color{red}Generative Pretrained Transformer (\textbf{GPT-x})}
+
+\begin{itemize}
+\setlength\itemsep{.3em}
+\item Basically a Transformer \textbf{Decoder} stack
+\item Trained unsupervised on a large corpus to predict the next word
+\item ``prompts'' the language model with different inputs
+\end{itemize}
+	\includegraphics[width=1.05\columnwidth]{images/gptc}
+\vspace{.05cm}
+
+\scriptsize{Radford et al. Language models are unsupervised multitask learners (2019).\\
+Brown et al. Language Models are Few-Shot Learners (2020)}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transformer-based Models (GPT)}
+{\color{red}Generative Pretrained Transformer (\textbf{GPT-x})}
+\begin{itemize}
+\item GPT-2 sizes
+\end{itemize}
+\begin{center}
+	\includegraphics[width=.7\columnwidth]{images/gpt2}
+\end{center}
+\vspace{.05cm}
+
+\scriptsize{Radford et al. Language models are unsupervised multitask learners (2019).\\
+Brown et al. Language Models are Few-Shot Learners (2020)}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Examples of fine-tuning (GPT)}
+{\color{red}Generative Pretrained Transformer (\textbf{GPT-x})}
+\begin{itemize}[<+->]
+\item {\color{blue}{Task:}} Given some text, generate a natural continuation with \textbf{positive} sentiment:
+(fine-tuning GPT2 with 5000 human samples suffice for strong performance according to humans)
+\item \textbf{Context (input):} \texttt{She looked tired. She’d been crying.
+Next to her was a man of medium build and unremarkable height, with brown hair just tousled enough to be fashionable. He wore a grey suit, its gravity somewhat offset by a black tie that featured Marvin the Martian. I recognized him.}
+\item \textbf{Zero-shot baseline:}
+\texttt{He was the guy who’d been chasing me the day I’d arrived in the city.}
+\item \textbf{fine-tuning:}
+\texttt{He smiled at me and I smiled back. He was pleasant enough, for a man of his age.}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Examples of fine-tuning (GPT)}
+{\color{red}Generative Pretrained Transformer (\textbf{GPT-x})}
+\begin{itemize}[<+->]
+\item {\color{blue}{Task:}} Given some text, generate a natural continuation with \textbf{physically descriptive text}:
+(fine-tuning GPT2 with 5000 human samples suffice for strong performance according to humans)
+\item \textbf{Context (input):} \texttt{It’s not her fault I was in a bad mood today. Not her fault I stayed up all night then took it out on her.
+In a way, she’s like basketball for me. An escape.
+Maybe a much moodier escape, but one all the same.}
+\item \textbf{Zero-shot baseline:}
+\texttt{I’m standing in the kitchen, trying to decide if I should call her when she comes bustling in.}
+\item \textbf{fine-tuning:}
+\texttt{
+I pause on the steps, listening to the distant sound of music playing from the living room.
+looked tired. She’d been crying.}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Transformer-based Models (GPT)}
+\begin{itemize}
+\item Examples of few-shot learning
+\end{itemize}
+\begin{center}
+	\includegraphics[width=.9\columnwidth]{images/zeroshot}
+\end{center}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Problems and Controversy}
+Far from \textbf{understanding} languange
+\begin{center}
+	\includegraphics[width=.5\columnwidth]{images/pr1}
+\end{center}
+\vspace{.25cm}
+\scriptsize{
+\url{https://www.technologyreview.com/2020/08/22/1007539/gpt3-openai-language-generator-artificial-intelligence-ai-opinion/
+}}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Problems and Controversy}
+\begin{center}
+	\includegraphics[width=\columnwidth]{images/pr2}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problems and Controversy}
+\begin{center}
+	\includegraphics[width=\columnwidth]{images/pr3}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Problems and Controversy}
+\begin{center}
+	\includegraphics[width=\columnwidth]{images/pr4}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Resources}
+
+\begin{itemize}
+\setlength\itemsep{1em}
+\item Deep Learning (Lectures 8,9) Prof. Andreas Geiger, University of T\"ubingen
+{\scriptsize{\url{https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/lectures/deep-learning/}}}
+\item CS480/680 Lecture 19: Attention and Transformer Networks
+{\scriptsize{\url{https://www.youtube.com/watch?v=OyFJWRnt_AY&list=PLVBRFV4GMJLxRYlPVWcWFvEyXsdQbl_1J&index=14&ab_channel=PascalPoupart}}}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+%\begin{frame}
+%  \frametitle{The transformer}
+%\begin{itemize}[<+->]
+%\setlength\itemsep{.8em}
+%\item \textbf{Attention based} model which does not rely on recurrence nor convolutions
+%\item Process all tokens in \textbf{parallel} (not sequentially as in an RNN)
+%\item Leads to significant speed-ups when using modern GPU clusters
+%\item \textbf{Self-attention} relates all tokens in a layer with each other
+%\item Thus can more easily capture \textbf{long-distance dependencies} compared to RNNs
+%\item Transformer-like architectures have now replaced RNNs in NLP applications,
+%\textbf{Defacto standard} for all state-of-the-art models
+%\end{itemize}
+%\vspace{1cm}
+%\scriptsize{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser and Polosukhin: Attention is All you Need. NIPS, 2017.}
+%\end{frame}
+
+%\begin{frame}
+%  \frametitle{BERT (Bidirectional Encoder Representations from Transformers)}
+%Full architecture
+%\end{frame}
+
+
+
+%\begin{frame}
+%  \frametitle{Recurrent Neural Networks}
+%\begin{itemize}
+%\item Deal with inputs as sequences of variable lengths
+%\item Simplest architecture
+%\end{itemize}
+%\begin{center}
+%\includegraphics[width=.3\textwidth]{images/rnn1}
+%\end{center}
+%\begin{align*}
+%W
+%\end{align*}
+%\end{frame}
+
+
+\section{Application: Language Models}
 
 \end{document}
