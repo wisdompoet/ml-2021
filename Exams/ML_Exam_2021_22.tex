@@ -17,8 +17,8 @@
 
 \title{
 \vspace{-1.2cm}
-Machine Learning 2020-21\\ Final Exam}
-\author{15 December 2020}
+Machine Learning 2021-22\\ Final Exam}
+\author{14 December 2020}
 \date{Name: \dotfill}% NIA: \dotfill}
 
 \newcounter{marks}
@@ -39,7 +39,7 @@ Machine Learning 2020-21\\ Final Exam}
 \item
 \fbox{2 points}
 \addtocounter{marks}{2}
-In linear regression with L2 regularization, the augmented training loss is \[L_{\mathrm{aug}}(w)=\frac 1 m (w^\top\mathrm{X}^\top\mathrm{X}w - 2w^\top\mathrm{X}^\top y + y^\top y + \lambda w^\top w),\] and the optimal weight vector is $w_{\mathrm{reg}}=(\mathrm{X}^\top\mathrm{X} + \lambda I)^{-1}\mathrm{X}^\top y$. What is the augmented training loss of $w_{\mathrm{reg}}$? Show the entire derivation and simplify the expression as much as possible.
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -49,7 +49,7 @@ In linear regression with L2 regularization, the augmented training loss is \[L_
 \item
 \fbox{2 points}
 \addtocounter{marks}{2}
-A company develops an application that estimates how long it will take users to drive to work. To do so, the company collects data of users driving to work, recording the initial and final location of the drive, and the time of day at the beginning and at the end. Which type of machine learning problem is this, and how are the concrete components of this learning problem defined?
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -58,24 +58,12 @@ A company develops an application that estimates how long it will take users to 
 
 \pagebreak
 
-\begin{center}
-\begin{tikzpicture}
- 	\draw[name path=E,thick] (0.3,0.8) circle (0.3cm);
- 	\draw[name path=F,thick] (0.3,0.8) circle (0.5cm);
-	\tikzfillbetween[of=E and F]{green, opacity=0.1};
- 	\draw[name path=A,thick] (1.2,1) circle (0.5cm);
- 	\draw[name path=B,thick] (1.2,1) circle (0.7cm);
-	\tikzfillbetween[of=A and B]{red, opacity=0.1};
- 	\draw[name path=C,thick] (2.5,0.5) circle (0.7cm);
- 	\draw[name path=D,thick] (2.5,0.5) circle (0.9cm);
-	\tikzfillbetween[of=C and D]{blue, opacity=0.1};
-\end{tikzpicture}
-\end{center}
+
 
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-Consider an input space in two dimensions in which the true concept classes are defined as (possibly overlapping) circular bands, as shown in the figure. Now imagine that you sample many data points from this input space, such that each data point falls within one of the circular bands. However, you do not have access to labels. If you wanted to perform unsupervised learning for this problem, which concrete algorithm would you choose, and why?
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -85,7 +73,7 @@ Consider an input space in two dimensions in which the true concept classes are 
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-How is the bias-variance tradeoff defined? Give an example of a learning problem with low bias, and a learning problem with low variance, and use the examples to discuss the tradeoff.
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -95,7 +83,7 @@ How is the bias-variance tradeoff defined? Give an example of a learning problem
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-What is the meaning of the ``kernel trick''? Describe how the kernel trick is applied in machine learning, and why it is important.
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -111,7 +99,7 @@ Name: \dotfill
 \item
 \fbox{2 point}
 \addtocounter{marks}{1}
-Given some dataset $\mathcal{D}$ and some model hypothesis parameterized by parameters~$\theta$, explain three main differences between estimating $\theta$ using Bayesian estimation and maximum likelihood. Illustrate the Bayesian approach with an example.
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -121,9 +109,7 @@ Given some dataset $\mathcal{D}$ and some model hypothesis parameterized by para
 \item
 \fbox{2 point}
 \addtocounter{marks}{1}
-We want to learn a generative model of text from a large corpus comprising senteces of different length in natural language.
-As a first approximation, we assume that the probability of a letter $X_k$ depends essentially on the two letters that appeared previously in the text, $X_{k-1}$ and $X_{k-2}$. Describe a Bayesian network representing such a model and then transform it into a factor graph.
-Formalize two conditional independencies that are derived from such a model.
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -139,8 +125,7 @@ Name: \dotfill
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-In discounted Markov decision processes, the value function $V^\pi$ associated with a deterministic policy $\pi:\mathcal{X}\rightarrow \mathcal{A}$ is defined as $V^\pi(x) = \mathbb{E}_\pi\left[\sum_{t=0}^\infty \gamma^t r_t\middle| x_0 = x\right]$
-for all states $x\in\mathcal{X}$. Using this notation, give the definition of an optimal policy $\pi^*$ and the optimal value function $V^*$.
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -150,7 +135,7 @@ for all states $x\in\mathcal{X}$. Using this notation, give the definition of an
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-The Value Iteration algorithm for discounted Markov decision processes iteratively computes a sequence of value functions $V_1,V_2,\dots,V_k$. In a given iteration $k$ of the algorithm, what is the relation between $V_{k}$ and $V_{k+1}$?
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -160,7 +145,7 @@ The Value Iteration algorithm for discounted Markov decision processes iterative
 \item
 \fbox{2 points}
 \addtocounter{marks}{2}
-Describe the TD(0) algorithm for policy evaluation in discounted Markov decision processes. If the algorithm is luckily initialized with the true value function $\widehat{V}_0 = V^\pi$, what is the expectation of $\widehat{V}_1$?
+
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
