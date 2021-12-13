@@ -18,7 +18,7 @@
 \title{
 \vspace{-1.2cm}
 Machine Learning 2021-22\\ Final Exam}
-\author{14 December 2020}
+\author{14 December 2021}
 \date{Name: \dotfill}% NIA: \dotfill}
 
 \newcounter{marks}
@@ -39,7 +39,8 @@ Machine Learning 2021-22\\ Final Exam}
 \item
 \fbox{2 points}
 \addtocounter{marks}{2}
-
+Show that the two univariate functions $e^x$ and $x\log x$ are convex for $x>0$.\\
+Hints: $\frac \partial {\partial x} e^x = e^x$, $\frac \partial {\partial x} \log x = \frac 1 x$, $\frac \partial {\partial x} x^p = p \cdot x^{p-1}$, and $\frac \partial {\partial x} \left( f(x) \cdot g(x) \right) = \frac {\partial f(x)} {\partial x} \cdot g(x) + f(x) \cdot\frac {\partial g(x)} {\partial x}$.
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -49,11 +50,16 @@ Machine Learning 2021-22\\ Final Exam}
 \item
 \fbox{2 points}
 \addtocounter{marks}{2}
-
+Solve the following constrained optimization problem:
+  \begin{align*}
+	\max_{x,y} \; & xy\\
+	\mathrm{s.t.} \; & x + 2y = 1
+  \end{align*}
+  Indicate the optimal value of $x$ and $y$ as well as the optimal value of the objective.
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
-\vspace*{6.5cm}
+\vspace*{7cm}
 }}
 
 \pagebreak
@@ -63,31 +69,31 @@ Machine Learning 2021-22\\ Final Exam}
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-
+Which is the objective of $k$-means clustering? How does the $k$-means algorithm approximate a solution to this objective?
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
-\vspace*{5cm}
+\vspace*{6.5cm}
 }}
 
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
+Briefly explain the backpropagation algorithm, and describe how the algorithm can be efficiently implemented.
 
-
-\framebox[16cm][l]{ 
+\framebox[16cm][l]{
 \parbox{15.9cm}{
-\vspace*{5cm}
+\vspace*{6.5cm}
 }}
 
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-
+Explain how a convolutional layer works in deep learning. How are convolutional layers implemented in practice? What changes do we have to make to standard backpropagation?
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
-\vspace*{5cm}
+\vspace*{6.5cm}
 }}
 
 
