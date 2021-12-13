@@ -6,6 +6,9 @@
 \usepackage{multirow}
 \usepackage{pgfplots}
 \usepackage{tikz}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{bayesnet}
+
 \usetikzlibrary{arrows,automata,positioning}
 \usetikzlibrary{shapes.multipart}
 \usetikzlibrary{decorations.markings}
@@ -131,8 +134,37 @@ Name: \dotfill
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-
-
+A Bayesian network models the relation between the variables oil ($oil$), inflation ($inf$), economy health~($eh$), British petroleum stock price ($bp$), and retailer stock price ($rt$).
+\begin{figure}[!th]
+\begin{center}
+\begin{tikzpicture}
+  % Define nodes
+  \node[latent]             (oil) {$oil$};
+  \node[latent, right=of oil]             (eh) {$eh$};
+  \node[latent, below=of eh]              (rt) {$rt$};
+  \node[latent, left=of rt]            (inf) {$inf$};
+  \node[latent, below=of inf, xshift=-1cm]   (bp) {$bp$};
+  % Connect the nodes
+  \edge {eh} {oil} ; %
+  \edge {oil} {inf} ; %
+  \edge {eh} {rt} ; %
+  \edge {inf} {rt} ; %
+  \edge {eh} {inf} ; %
+  \edge {oil} {bp} ; %
+  \end{tikzpicture}
+ \caption{A simple Bayesian network}\label{fig:oil}
+\end{center}
+\end{figure}
+\vspace{-1cm}
+   \begin{enumerate}
+    \item Write down the corresponding factorization of the joint probability distribution.
+    \item Use the D-Separation algorithm to determine whether the following conditional independences.
+\begin{enumerate}
+\item Is $eh$ independent of $bp$ if no evidence is provided? Why?
+\item Is $eh$ independent of $bp$ if we observe that the $oil$ is $high$? Why?
+\item Is $rt$ independent of $bp$ if we observe that $eh$ is $low$? Why?
+\end{enumerate}
+\end{enumerate}
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
 \vspace*{4.5cm}
@@ -141,7 +173,15 @@ Name: \dotfill
 \item
 \fbox{1 point}
 \addtocounter{marks}{1}
-
+We aquire some data $\mathcal{D}$ consisting on $N$ independent and identically distributed samples $x_i, i = 1,\hdots,N$ at different times.
+We assume a Gaussian generative model for $\mathcal{D}$ with constant variance $\sigma^2$ and mean determined by the output of a time-dependent model $F_{\boldsymbol{\theta}}(t)$ with parameters $\boldsymbol{\theta}$.
+\vspace{-.3cm}
+\begin{enumerate}
+\item Write down the formula for the corresponding likelihood function of $\boldsymbol{\theta}$ for fixed $\mathcal{D}$.
+\item Explain how the Bayes theorem can be used to update the parameters $\boldsymbol{\theta}$ in light of $\mathcal{D}$.\\
+\end{enumerate}
+\vspace{-.6cm}
+Hint: A Gaussian distributed variable $y$ with mean $\mu$ and variance $\sigma^2$ has density $f(y)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{y-\mu}{\sigma}\right)^2}$.
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
@@ -151,7 +191,8 @@ Name: \dotfill
 \item
 \fbox{2 points}
 \addtocounter{marks}{2}
-
+Describe qualitatively in what consists the mechanism called \emph{attention} in deep learning and how attention is integrated in the Transformer network.
+You can help yourself with a diagram.
 
 \framebox[16cm][l]{ 
 \parbox{15.9cm}{
