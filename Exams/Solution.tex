@@ -1,0 +1,102 @@
+
+\documentclass{article}
+
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{textpos}
+\usepackage{amsmath}
+
+\newcommand\hcancel[2][black]{\setbox0=\hbox{$#2$}%
+\rlap{\raisebox{.45\ht0}{\textcolor{#1}{\rule{\wd0}{1pt}}}}#2}
+
+%\usetheme{Berlin}
+%\usecolortheme{seahorse}
+%\usefonttheme{professionalfonts}
+
+\begin{document}
+
+\subsection*{Solution}
+
+\paragraph{Question 1}
+A univariate function $f(x)$ is convex if and only if its second derivative $f''(x)$ is non-negative.\\
+
+\begin{tabular}{lll}
+$f(x) = e^x$ & $\Rightarrow$ $f'(x) = e^x$ & $\Rightarrow$ $f''(x) = e^x \geq 0$, $\forall x$,\\
+$f(x) = x\log x$ & $\Rightarrow$ $f'(x) = \log x + 1$ & $\Rightarrow$ $f''(x) = \frac 1 x \geq 0$, $\forall x > 0$.\\
+\end{tabular}\\
+
+\noindent
+Hence the functions $e^x$ and $x\log x$ are both convex for $x>0$.
+
+\paragraph{Question 2}
+We first rewrite the constraint as $1 - x - 2y = 0$, and solve using the method of Lagrange multipliers. First form the Lagrangian:
+\[
+\mathcal{L}(x,y,\lambda) = xy + \lambda(1 - x - 2y).
+\]
+Then set the gradient of the Lagrangian to $0$:
+\[
+0 = \nabla\mathcal{L}(x,y,\lambda)
+= \left( \begin{array}{c} \frac {\partial\mathcal{L}(x,y,\lambda} {\partial x}\\ \frac {\partial\mathcal{L}(x,y,\lambda)} {\partial y} \end{array} \right)
+= \left( \begin{array}{c} y - \lambda\\ x - 2\lambda \end{array} \right)
+\;\; \Leftrightarrow \;\;
+\left( \begin{array}{c} x^*\\ y^* \end{array} \right)
+= \left( \begin{array}{c} 2\lambda\\ \lambda \end{array} \right).
+\]
+Now form the dual optimization problem:
+\[
+g(\lambda) = \mathcal{L}(x^*,y^*,\lambda) = 2\lambda^2 + \lambda(1 - 4\lambda) = \lambda(1 - 2\lambda).
+\]
+Then set the gradient of the dual to $0$:
+\[
+0 = \frac {\partial g(\lambda)} {\partial \lambda} = 1 - 2\lambda - 2\lambda = 1 - 4\lambda
+\;\; \Leftrightarrow \;\;
+\lambda^* = \frac 1 4.
+\]
+Hence the solution is given by $x^* = 2\lambda^* = \frac 1 2$ and $y^* = \lambda^* = \frac 1 4$, and the optimal value of the objective is $x^*y^* = \frac 1 8$.
+
+\paragraph{Question 3}
+The objective of $k$-means clustering is to minimize the cost
+\[G_{k-\text{means}}(C_1,\ldots,C_k) = \sum_{i=1}^k\sum_{x\in C_i} d(x,\mu(C_i))^2,\]
+where $C_1,\ldots,C_k$ is a partition of the training set $S$, $d$ is a distance measure, and $\mu(C_i)$ is the centroid of each subset $C_i$. This minimization problem is NP-hard to solve exactly, and $k$-means clustering approximates a solution by repeatedly performing the following two steps until convergence:
+\begin{enumerate}
+  \item Recompute $C_1,\ldots,C_k$ by reassigning data points to the nearest centroid.
+  \item Recompute the centroid $\mu_i$ of each subset $C_i$.
+\end{enumerate}
+
+\paragraph{Question 4}
+To perform validation, we split the data into a training set and a validation set. We train each model on the training set and use the validation set to compute a validation loss of each model. We then select the model with smallest validation loss. The validation loss of the winning model is an optimistic estimate of the true loss since the validation loss was used as a selection criterion.
+
+\paragraph{Question 5} $\;$\\
+
+\begin{tabular}{lll}
+{\bf Model} & {\bf Advantages} & {\bf Disadvantages}\\
+\hline
+DT & Interpretable & Sensitive to training set\\
+   & Fast to train & Usually low accuracy\\
+\hline
+SVM & Memory efficient & Sensitive to noise\\
+    & Maximizes the margin & Scales poorly to large datasets\\
+\hline
+NN & Powerful approximators & Not interpretable\\
+   & Automated feature extraction & Data-hungry, slow to train\\
+\end{tabular}
+
+\paragraph{Question 6}
+The backpropagation algorithm updates the weights of a feed-forward neural network using stochastic gradient descent. The gradient of the error with respect to a given weight depends on the gradient associated with the weights in the subsequent layer, which is why the algorithm proceeds backwards from the output layer to the input layer, hence its name. An efficient implementation uses matrix operations to update all weights in a layer at once.
+
+\paragraph{Question 7}
+A convolutional layer applies a series of small filters or kernels to an input image. Each filter is repeated many times by moving it on top of the image. At each location, the output is a weighted sum of the filter weights and the local pixel values of the image. Using deep learning it is possible to learn the weights of each filter automatically. An efficient implementation uses matrix operations to apply a filter everywhere across the image. Backpropagation is in fact also a convolution from the outputs to the inputs, since weights are shared.
+
+\paragraph{Question 8}
+
+
+\paragraph{Question 9}
+
+
+\paragraph{Question 10}
+
+
+\end{document}
+
