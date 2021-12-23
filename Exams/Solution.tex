@@ -90,12 +90,42 @@ The backpropagation algorithm updates the weights of a feed-forward neural netwo
 A convolutional layer applies a series of small filters or kernels to an input image. Each filter is repeated many times by moving it on top of the image. At each location, the output is a weighted sum of the filter weights and the local pixel values of the image. Using deep learning it is possible to learn the weights of each filter automatically. An efficient implementation uses matrix operations to apply a filter everywhere across the image. Backpropagation is in fact also a convolution from the outputs to the inputs, since weights are shared.
 
 \paragraph{Question 8}
+The attention mechanism mimics a retrieval process in which a query is probabilistically matched with a
+set of keys to return a convex combination of values. It allows a learning architecture to focus on certain parts of
+the input that are relevant and discard others that are irrelevant for a particular task.
+Attention can be implemented through a transformation layer
+that maps input sequences to three different sequential vectors
+(query $Q$, key $K$, and value $V$) and a softmax: 
+$Attention(Q,K,V)=Softmax\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$, where $d_k$ is
+the dimension of the key and query.
 
+Attention is an essential component in the transformer architecture: it is used
+in the encoder, where $K,Q$ and $V$ are all input embeddings (self-attention), or between
+the encoder and the decoder (where $Q$ is an output embedding and $K,V$ are input embeddings). 
+In practice, different attention are concatenated (multi-head attention) which allows learning
+more than one attention pattern and improves performance.
 
 \paragraph{Question 9}
+\begin{enumerate}
+	\item $p(eh,oil,bp,rt,inf)=p(eh)p(oil|eh)p(bp|oil)p(rt|eh,inf)p(inf|oil,eh)$.
+    \item \begin{enumerate}
+        \item No, path $bp\leftarrow oil\leftarrow eh $ is open since it is composed of head-to-tail nodes exclusively and none of them are observed.
+        \item Yes, $bp\leftarrow oil\leftarrow eh $ is blocked, since $oil$ is head-to-tail and belongs to evidence, as well as $bp\leftarrow oil\rightarrow inf ...$, since $oil$ is tail-to-tail and belongs to evidence.
+        \item No, the upper path through $eh$ is blocked, but  $bp\leftarrow oil\rightarrow inf \rightarrow rt$ is opened since no node is head-to-head and belongs to evidence. 
+    \end{enumerate}
+\end{enumerate}
 
 
 \paragraph{Question 10}
+\begin{enumerate}
+\item The likelihood (a function over $\boldsymbol{\theta}$) is 
+$$p(\mathcal{D}:=\{x_i\}_{i=1}^N|\boldsymbol{\theta}) = \left(\frac{1}{\sigma\sqrt{2\pi}}\right)^N \exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^N {(F_{\boldsymbol{\theta}}(t_i)-x_i})^2\right).$$
+\item The Bayes theorem can be used as
+$p(\boldsymbol{\theta}|\mathcal{D}) = \frac{p(\mathcal{D}|\boldsymbol{\theta})p(\boldsymbol{\theta})}{p(\mathcal{D})}$.
+
+To update $\boldsymbol{\theta}$, we can find the maximum a posteriori estimator $$\boldsymbol{\theta}^*=\text{argmax}_{\boldsymbol{\theta}} p(\mathcal{D}|\boldsymbol{\theta}),$$
+which would assume a uniform (uninformed) prior over $\boldsymbol{\theta}$.
+\end{enumerate}
 
 
 \end{document}
